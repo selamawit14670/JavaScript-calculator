@@ -1,0 +1,39 @@
+#form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+#number1{
+    padding: 5px;
+}
+#number2{
+    padding: 5px;
+}
+#operator{
+    display: grid;
+    grid-template-columns: 60px;
+    gap: 10px;
+
+}
+#calculator{
+    background-color: rgb(184, 57, 57);
+    margin-top: 100px;
+    padding: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    
+}
+#number{
+    display: grid;
+    grid-template-columns: repeat(3, 60px);
+    gap: 10px;
+    justify-content: center;
+}
+#buttons{
+display: grid;
+grid-template-columns: auto auto;
+gap: 10px;
+justify-content: center;
+}
