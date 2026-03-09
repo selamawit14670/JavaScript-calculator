@@ -1,38 +1,115 @@
+// Display
 let display = document.getElementById("result");
+
+// Numbers
 let numbers = document.querySelectorAll(".number");
+
 numbers.forEach(function(button){
     button.addEventListener("click", function(){
         display.value += button.textContent;
-    })
-})
+    });
+});
 
-var add = document.getElementById("add");
-var subtract = document.getElementById("subtract");
-var multiply = document.getElementById("multiply");
-var divide = document.getElementById("divide");
+function isOperator(char){
+    return char === "+" || char === "-" || char === "*" || char === "/";
+}
 
-add.addEventListener("click", function(){
+function hasOperator(value){
+    return value.includes("+") ||
+            value.includes("-") ||
+            value.includes("*") ||
+            value.includes("/");
+}
+// Operators
+let operator = "";
+let firstNumber = "";
+
+// Addition
+document.getElementById("add").addEventListener("click", function(){
+    
+    let lastChar = display.value.slice(-1);
+
+    if(isOperator(lastChar)) return;
+
+
+    operator = "+";
+    firstNumber = display.value;
     display.value += "+";
 });
 
-subtract.addEventListener("click", function(){
+// Subtraction
+document.getElementById("subtract").addEventListener("click", function(){
+
+    let lastChar = display.value.slice(-1);
+
+    if(isOperator(lastChar)) return;
+
+    operator = "-";
+    firstNumber = display.value;
     display.value += "-";
 });
 
-multiply.addEventListener("click", function(){
+// Multiplication
+document.getElementById("multiply").addEventListener("click", function(){
+
+    let lastChar = display.value.slice(-1);
+
+    if(isOperator(lastChar)) return;
+
+    operator = "*";
+    firstNumber = display.value;
     display.value += "*";
 });
 
-divide.addEventListener("click", function(){
-    display.value += "÷";
+// Division
+document.getElementById("divide").addEventListener("click", function(){
+
+    let lastChar = display.value.slice(-1);
+
+    if(isOperator(lastChar)) return;
+
+    operator = "/";
+    firstNumber = display.value;
+    display.value += "/";
 });
 
-var answer = document.querySelector(".answer");
-answer.addEventListener("click", function(){
-    display.value = eval(display.value);
+
+// Answer button
+document.getElementById("answer").addEventListener("click", function(){
+
+    if(display.value === "") return;
+
+    try{
+        display.value = eval(display.value);
+    }
+    catch{
+        display.value = "Error";
+    }
+
 });
 
-var del = document.querySelector(".delete");
-del.addEventListener("click", function(){
+
+// Delete button
+document.querySelector(".delete").addEventListener("click", function(){
     display.value = display.value.slice(0, -1);
+});
+
+document.querySelector(".clear").addEventListener("click", function(){
+    display.value = "";
+    operator ="";
+    firstNumber = "";
+})
+
+let toggleButton = document.getElementById("theme-toggle");
+
+toggleButton.addEventListener("click", function(){
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+        toggleButton.textContent = "☀️";
+    }else{
+        toggleButton.textContent = "🌙";
+    }
+
 });
